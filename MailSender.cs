@@ -33,8 +33,8 @@ namespace EmailBulkingFromExcel
         {
             try
             {
-                string from = "1402harshpatel@gmail.com"; //Enter Email Id Of Sender Here
-                string password = "Patel@@123";           //Enter Email Id Password Sender Here
+                string from = "";               //Enter Email Id Of Sender Here
+                string password = "";           //Enter Email Id Password Sender Here
 
                 foreach (string MailTo in To)
                 {
