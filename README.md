@@ -2,7 +2,7 @@
 In This Repository You Can Have A MailSender Class File That Can Use For The Mail Send Anywhere Using C#.
 
 
-For Example,
+For **Example**,
   
    MailSender objMailSend = new MailSender();               //  Create Class Object For The Accessing The Method Of Class
    
