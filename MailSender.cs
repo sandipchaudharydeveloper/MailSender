@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,16 +25,16 @@ namespace EmailBulkingFromExcel
         /// <param name="Body">
         ///      You Wan't To Send Mail Body It's Body Pass Here In String
         /// </param>
-        /// <param name="LstFile">
-        ///      You Wan't To Send Mail Attechments It's Attechments Pass Here In List Of HttpPostedFileFile
+        /// <param name="lstFilePath">
+        ///      You Wan't To Send Mail Attechments It's Attechments Path Pass Here In List Of String
         /// </param>
         /// <returns></returns>
-        public string MailSend(List<string> To, string Subject, string Body, List<HttpPostedFile> LstFile)
+        public string MailSend(List<string> To, string Subject, string Body, List<string> lstFilePath)
         {
             try
             {
-                string from = "";               //Enter Email Id Of Sender Here
-                string password = "";           //Enter Email Id Password Sender Here
+                string from = "1402harshpatel@gmail.com"; //Enter Email Id Of Sender Here
+                string password = "Patel@@123";           //Enter Email Id Password Sender Here
 
                 foreach (string MailTo in To)
                 {
@@ -43,11 +43,13 @@ namespace EmailBulkingFromExcel
                     {
                         mail.Subject = Subject;
                         mail.Body = Body;
-                        foreach (HttpPostedFile uploadedFile in LstFile)
+
+
+                        foreach (string filePath in lstFilePath)
                         {
-                            string fileName = Path.GetFileName(uploadedFile.FileName);
-                            mail.Attachments.Add(new Attachment(uploadedFile.InputStream, fileName));
+                            mail.Attachments.Add(new Attachment(filePath));
                         }
+
                         mail.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient();
                         smtp.Host = "smtp.gmail.com";
@@ -62,11 +64,13 @@ namespace EmailBulkingFromExcel
             }
             catch (Exception ex)
             {
-
                 return "fail !!! " + ex.Message;
             }
             return "success";
         }
         #endregion
+
+
+
     }
 }
